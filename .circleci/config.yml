@@ -1,0 +1,92 @@
+version: '2.1'
+
+orbs:
+  python: circleci/python@2.0.3
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - python/install-packages:
+          pip-dependency-file: requirements.txt
+          pkg-manager: pip
+      - python/install-packages:
+          args: pytest
+          pkg-manager: pip
+          pypi-cache: false
+      - run:
+          command: |
+            pytest -v
+          name: Run tests using pytest
+
+  deploy-to-dockerhub:
+    docker:
+      - image: cimg/base:2022.03
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Build and push image to Docker Hub
+          command: |
+            docker build -t $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest .
+            echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
+            docker push $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest
+
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
+      - deploy-to-dockerhub:
+          requires:
+            - build-and-test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # deploy:
+  #   docker:
+  #     - image: circleci/buildpack-deps:stretch
+  #   steps:
+  #     - checkout
+  #     - setup_remote_docker:
+  #         version: 19.03.13
+  #     - run:
+  #         name: Build and push to Docker Hub
+  #         command: |
+  #           docker build -t $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest .
+  #           echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
+  #           docker push $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest
+
+# workflows:
+#   version: 2
+#   build-master:
+#     jobs:
+#       - build
+#       # - deploy:
+#       #     requires:
+#       #       - build
