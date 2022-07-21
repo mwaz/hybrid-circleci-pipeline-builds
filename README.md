@@ -6,7 +6,7 @@
 **Windows**
           
 ```bash
-git clone https://github.com/mwaz/hybrid-circlecI-pipeline-builds.git
+git clone https://github.com/mwaz/hybrid-circleci-pipeline-builds.git
 cd Hybrid-CircleCI-app
 py -3 -m venv venv
 ```
