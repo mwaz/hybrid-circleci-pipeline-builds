@@ -23,7 +23,7 @@ cd hybrid-circleci-pipeline-builds
 py -3 -m venv venv 
 
 ```
-          
+  
 **macOS/Linux**
           
 ```bash
@@ -44,13 +44,11 @@ python3 -m venv venv
 or
 
 ```source venv/bin/activate```
-
 ## 3 .Install the Dependencies
 
 Applies for windows/macOS/Linux
 
 ```pip install -r requirements.txt```
-
 
 ## 4. Run the application 
 
@@ -60,11 +58,7 @@ Applies for windows/macOS/Linux
 
 `pytest -v`
 
-
-
 N.B: Once the application server starts running on the terminal, you can use a tool like [postman](https://www.postman.com/) to make the HTTP requests to the application endpoints. The `api/routes.py` file gives an overview of what endpoints are available and what we need to pass into the HTTP requests. 
-
-
 
 ## Details
 
