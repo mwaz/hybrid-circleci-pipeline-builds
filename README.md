@@ -1,6 +1,6 @@
 # Hybrid CircleCI Pipeline Builds
 
-[![CircleCI](https://circleci.com/gh/mwaz/hybrid-circleci-pipeline-builds.svg?style=svg)](https://circleci.com/gh/mwaz/hybrid-circleci-pipeline-builds-config)
+[![CircleCI](https://circleci.com/gh/mwaz/hybrid-circleci-pipeline-builds.svg?style=svg)](https://circleci.com/gh/mwaz/hybrid-circleci-pipeline-builds)
 
 <p align="center"><img src="https://avatars3.githubusercontent.com/u/59034516"></p>
 
